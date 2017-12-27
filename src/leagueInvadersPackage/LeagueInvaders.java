@@ -9,20 +9,21 @@ public class LeagueInvaders {
 	static final int width = 500;
 	static final int length = 800;
 	GamePanel panel = new GamePanel();
-	LeagueInvaders(){
-		
+
+	LeagueInvaders() {
+
 	}
-	
+
 	void setup() {
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(panel);
 		frame.getContentPane().setPreferredSize(new Dimension(width, length));
-        frame.pack();
-        panel.StartGame();
-        frame.addKeyListener(panel);
+		frame.pack();
+		panel.StartGame();
+		frame.addKeyListener(panel);
 	}
-	
+
 	public static void main(String[] args) {
 		LeagueInvaders league = new LeagueInvaders();
 		league.setup();

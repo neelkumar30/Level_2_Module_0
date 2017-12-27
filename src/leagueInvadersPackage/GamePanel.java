@@ -26,6 +26,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Font font4 = new Font("Arial", Font.PLAIN, 30);
 	Font font5 = new Font("Arial", Font.PLAIN, 30);
 
+	Rocketship rocket = new Rocketship(250, 700, 50, 50);
+	ObjectManager object = new ObjectManager(rocket);
+
 	GamePanel() {
 
 	}
@@ -35,7 +38,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void updateGameState() {
-
+		object.update();
 	}
 
 	void updateEndState() {
@@ -53,12 +56,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("Press ENTER to Start", 100, 300);
 		g.setFont(font2);
 		g.setColor(Color.RED);
-		g.drawString("Press SPACE for Instructions", 75, 450);
+		g.drawString("Press SPACE for Instructions", 55, 450);
 	}
 
 	void drawGameState(Graphics g) {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, LeagueInvaders.width, LeagueInvaders.length);
+		object.draw(g);
 	}
 
 	void drawEndState(Graphics g) {
@@ -133,11 +137,39 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			currentState = MENU_STATE;
 
 		}
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+			rocket.up = true;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			rocket.down = true;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			rocket.right = true;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			rocket.left = true;
+		}
+		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+			 object.addProjectile(new Projectiles(rocket.x+20, rocket.y, 10, 10));
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 		System.out.println("Chargers");
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+			rocket.up = false;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			rocket.down = false;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			rocket.right = false;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			rocket.left = false;
+		}
+
 	}
 }
