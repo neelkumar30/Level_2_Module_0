@@ -30,7 +30,18 @@ public class Rocketship extends GameObject {
 		if (left == true) {
 			x = x - speed;
 		}
-
+		if(x>480) {
+			x = 480;
+		}
+		if(x<-20) {
+			x = -20;
+		}
+		if(y>750) {
+			y = 750;
+		}
+		if(y<-10) {
+			y = -10;
+		}
 	}
 	
 	void draw(Graphics g) {
